@@ -1,0 +1,71 @@
+### POST incription d'un utilisateur
+POST http://localhost:8080/api/videoplaystore/users
+Content-Type: application/json
+Accept: Application/json
+
+{
+  "username": "mahamat",
+  "password": "orleans2025",
+  "mail": "hamat@gmail.com",
+  "role": "classicuser"
+}
+
+> {%
+    client.global.set("name",response.body.username)
+    client.global.set("login",response.body.userlogin)
+    client.global.set("id",response.body.userid)
+%}
+
+
+### POST pour ajouter une playlist
+POST http://localhost:8080/api/videoplaystore/playlist?login=hamat@gmail.com&password=orleans2025
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Mes Hits",
+  "description": "Playlist test",
+  "userid": "{{id}}",
+  "username": "{{name}}"
+}
+
+
+### GET consultation d'un profil
+
+GET http://localhost:8080/api/videoplaystore/users/{{id}}?login=hamat@gmail.com&password=orleans2025&id={{id}}
+Accept: application/json
+
+
+
+### POST pour ajouter une playlist
+POST http://localhost:8080/api/videoplaystore/playlist?login=mahamat@gmail.com&password=orleans2025
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Mes Hits",
+  "description": "Playlist test",
+  "userid": "fb6fe1f8-b818-48ec-9f61-5faa41cc8e70",
+  "username": "mahamat@gmail.com"
+
+}
+
+
+### POST pour ajouter une video
+POST https://localhost:8080/api/videoplaystore/video/{{username}}
+Content-Type: Application/json
+Accept: Application/json
+
+{
+  "description" : "my first video on store yeah",
+  "title":"track1"
+}
+
+
+### GET recuperer une playlist
+GET http://localhost:8080/api/videoplaystore/playlist/
+login:{{login}}
+password:{{userpassword}}
+
+
+
